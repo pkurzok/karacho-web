@@ -1,0 +1,33 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import { hero } from '../data/site';
+import Cta from './Cta.astro';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/images/screenshots/*.jpg', {
+  eager: true,
+});
+const image = images[`../assets/images/screenshots/${hero.image}`];
+if (!image) throw new Error(`Hero image ${hero.image} is missing in src/assets/images/screenshots/`);
+---
+
+<section id="hero" class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <h1 class="hero-title">{hero.title}</h1>
+        <p class="hero-subtitle">{hero.subtitle}</p>
+        <div class="hero-cta">
+          <Cta placement="hero" />
+        </div>
+        <ul class="hero-trust">
+          {hero.trust.map((entry) => <li>{entry}</li>)}
+        </ul>
+      </div>
+      <div class="hero-visual">
+        {/* Twice the width of its 360px slot, for high-resolution screens. */}
+        <Image src={image.default} width={720} alt={hero.imageAlt} class="hero-image" loading="eager" />
+      </div>
+    </div>
+  </div>
+</section>

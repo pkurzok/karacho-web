@@ -1,0 +1,17 @@
+---
+// The App Store badge of app.status. There is none while the app is only announced.
+import { app } from '../data/site';
+
+if (app.status === 'announced') {
+  throw new Error("StoreBadge has no badge for app.status 'announced'.");
+}
+if (!app.appStoreUrl) {
+  throw new Error(`app.status '${app.status}' needs app.appStoreUrl and app.appStoreId in src/data/site.ts.`);
+}
+
+const badge = app.badge[app.status];
+---
+
+<a href={app.appStoreUrl} class="store-badge-link">
+  <img src={`/images/${badge.file}-white.svg`} alt={badge.alt} class="store-badge" />
+</a>

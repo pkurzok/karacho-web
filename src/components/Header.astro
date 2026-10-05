@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import appIcon from '../assets/images/app-icon.png';
+import { app, nav, navCta } from '../data/site';
+
+// Section anchors only exist on the homepage; everywhere else they lead back to it.
+const onHomepage = Astro.url.pathname === '/';
+const resolve = (href: string) => (href.startsWith('#') && !onHomepage ? `/${href}` : href);
+---
+
+<header>
+  <nav class="site-header" aria-label="Main">
+    <div class="container">
+      <a href="/" class="brand-link">
+        {/* Twice the size of its slot, for high-resolution screens. */}
+        <Image src={appIcon} width={56} height={56} alt="" class="brand-icon" loading="eager" />
+        <span class="brand-name">{app.name}</span>
+      </a>
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-controls="site-nav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" aria-hidden="true">
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-miterlimit="10"
+            stroke-width="2"
+            d="M4 7h22M4 15h22M4 23h22"
+          />
+        </svg>
+      </button>
+      <div id="site-nav" class="nav-collapse">
+        <ul class="nav-list">
+          {nav.map((entry) => (
+            <li>
+              <a href={resolve(entry.href)} class="nav-link">
+                {entry.label}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href={resolve(navCta.href)} class="button button-small">
+              {navCta.label}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script is:inline>
+  (() => {
+    const toggle = document.querySelector('.nav-toggle');
+    const target = document.getElementById(toggle.getAttribute('aria-controls'));
+    const set = (open) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      target.toggleAttribute('data-open', open);
+    };
+    toggle.addEventListener('click', () => set(toggle.getAttribute('aria-expanded') !== 'true'));
+    // A section link scrolls the page; the open menu would cover the section.
+    target.addEventListener('click', (event) => {
+      if (event.target.closest('a')) set(false);
+    });
+  })();
+</script>

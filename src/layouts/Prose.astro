@@ -1,0 +1,25 @@
+---
+// Layout for pages written in Markdown; the frontmatter supplies title, description and path.
+import { app } from '../data/site';
+import Base from './Base.astro';
+
+interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+    path: string;
+  };
+}
+
+const { title, description, path } = Astro.props.frontmatter;
+---
+
+<Base title={`${title} - ${app.name}`} description={description} path={path}>
+  <div class="privacy-page">
+    <div class="container">
+      <div class="privacy-content">
+        <slot />
+      </div>
+    </div>
+  </div>
+</Base>

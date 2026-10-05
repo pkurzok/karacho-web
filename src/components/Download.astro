@@ -1,0 +1,14 @@
+---
+import { app, sections } from '../data/site';
+import Cta from './Cta.astro';
+---
+
+<section id="download" class="download-section">
+  <div class="container">
+    <div class="download-content">
+      <h2>{sections.download.title}</h2>
+      <p class="download-description">{app.downloadText[app.status]}</p>
+      <Cta placement="download" />
+    </div>
+  </div>
+</section>

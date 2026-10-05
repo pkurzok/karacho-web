@@ -1,0 +1,1053 @@
+/* ==========================================
+   Tokens
+   ========================================== */
+
+:root {
+    /* The app enforces a dark appearance, and so does its site: one palette, taken from the
+       dial. #0A0C10 is Palette.background, #FFB020 is Palette.segmentOn. */
+    color-scheme: dark;
+
+    /* Theme colors */
+    --primary-color: #FFB020;
+    --primary-hover: color-mix(in srgb, var(--primary-color) 84%, white);
+    --primary-rgb: 255, 176, 32;
+    --accent-color: #FFB020;
+    /* What sits on amber: the dial's own ground. */
+    --on-primary: #0A0C10;
+    --brand-gradient: linear-gradient(135deg, #2B1D05 0%, #0A0C10 70%);
+    --tint: #1A1407;
+    --link-color: var(--accent-color);
+
+    /* Text colors */
+    --text-dark: #fafafa;
+    --text-primary: #e5e5e5;
+    --text-muted: #a1a1aa;
+    --text-light: #71717a;
+    --text-secondary: var(--text-muted);
+    --code-color: #FFB020;
+
+    /* Background colors */
+    --bg-page: #0A0C10;
+    --bg-light: #12151B;
+    --bg-card: #161A21;
+    --surface-elevated: rgba(10, 12, 16, 0.92);
+    --section-surface-b: #0E1116;
+
+    /* Border and shadow */
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+    --toggle-color: rgba(255, 255, 255, 0.88);
+
+    /* Font families */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-family-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+    /* Spacing scale */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --section-padding-y: 5rem;
+
+    /* Border radius */
+    --radius-sm: 0.375rem;
+    --radius-lg: 1rem;
+}
+
+/* ==========================================
+   Base
+   ========================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: var(--bg-page);
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    /* Anchors stop below the sticky header. */
+    scroll-padding-top: 4.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* The page behind an open lightbox does not scroll. */
+html:has(dialog[open]) {
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    color: var(--text-primary);
+    background-color: var(--bg-page);
+    line-height: 1.7;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-dark);
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+    letter-spacing: -0.01em;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+p {
+    margin: 0 0 1rem;
+}
+
+ul {
+    margin: 0 0 1rem;
+    padding-left: 2rem;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: underline;
+}
+
+strong {
+    font-weight: bolder;
+}
+
+code {
+    font-family: var(--font-family-mono);
+    font-size: 1em;
+    color: var(--code-color);
+    word-wrap: break-word;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+}
+
+:focus-visible {
+    outline: 2px solid var(--link-color);
+    outline-offset: 2px;
+}
+
+.icon {
+    display: inline-block;
+    vertical-align: -0.125em;
+}
+
+.site-main {
+    display: block;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 2.5rem;
+    }
+}
+
+/* ==========================================
+   Button
+   ========================================== */
+
+.button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--on-primary);
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    background: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 0.5rem;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.button:hover {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.button-small {
+    padding: 0.375rem 0.875rem;
+    font-size: 0.875rem;
+    border-radius: 999px;
+}
+
+/* The call to action on the dark gradient: amber, with the dial's ground as text. */
+.button-inverse {
+    padding: 0.875rem 2rem;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--on-primary);
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.button-inverse:hover {
+    color: var(--on-primary);
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* On a phone the longest label still fits on one line. */
+@media (max-width: 480px) {
+    .button-inverse {
+        padding: 0.875rem 1.25rem;
+        font-size: 1rem;
+    }
+}
+
+/* On the gradient the focus ring has to be white to be seen. */
+.hero :focus-visible,
+.download-section :focus-visible {
+    outline-color: #fff;
+}
+
+/* ==========================================
+   Header
+   ========================================== */
+
+.site-header {
+    display: block;
+    background: var(--surface-elevated);
+    color: var(--text-primary);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    padding: 0.75rem 0;
+}
+
+.site-header .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-sm) var(--spacing-lg);
+}
+
+.brand-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-right: 0.5rem;
+    text-decoration: none;
+    white-space: nowrap;
+    color: inherit;
+}
+
+/* The icon PNG is already masked; clipping to the same shape keeps the edge clean. */
+.brand-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 22.5%;
+}
+
+.brand-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.nav-toggle {
+    padding: 0.4rem 0.55rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    color: var(--toggle-color);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+}
+
+.nav-toggle svg {
+    display: block;
+    width: 1.5em;
+    height: 1.5em;
+}
+
+/* Below 768px the navigation is closed until the toggle sets data-open. */
+.nav-collapse {
+    display: none;
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+    padding-top: var(--spacing-sm);
+}
+
+.nav-collapse[data-open] {
+    display: block;
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+    width: 100%;
+    margin: 0 0 0.5rem;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 0;
+    color: var(--text-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: color 0.2s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--text-dark);
+}
+
+.nav-list .button {
+    margin-top: 0.25rem;
+    white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+    .brand-link {
+        margin-right: auto;
+    }
+
+    .nav-toggle {
+        display: none;
+    }
+
+    .nav-collapse,
+    .nav-collapse[data-open] {
+        display: flex;
+        flex-basis: auto;
+        justify-content: flex-end;
+        padding-top: 0;
+    }
+
+    .nav-list {
+        flex: 1 0 0%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 1.25rem;
+        margin-bottom: 0;
+    }
+
+    .nav-list .button {
+        margin-top: 0;
+    }
+
+    .nav-link {
+        padding: 0.5rem;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0.5rem;
+        width: 0;
+        height: 2px;
+        background: var(--link-color);
+        transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+        width: calc(100% - 1rem);
+    }
+}
+
+/* ==========================================
+   Hero
+   ========================================== */
+
+.hero {
+    position: relative;
+    /* Above the next section, which the screenshot overlaps on wide screens. */
+    z-index: 1;
+    padding: 5rem 0 2rem;
+    color: #fff;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 176, 32, 0.16), transparent 45%),
+        radial-gradient(circle at 80% 70%, rgba(255, 176, 32, 0.1), transparent 45%),
+        var(--brand-gradient);
+    text-align: center;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.hero-title {
+    margin-bottom: 1.5rem;
+    font-size: clamp(2.25rem, 4vw, 3.25rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: #fff;
+    text-wrap: balance;
+}
+
+.hero-subtitle {
+    max-width: 36rem;
+    margin: 0 auto 2rem;
+    font-size: clamp(1.125rem, 1.6vw, 1.3rem);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-cta {
+    margin-bottom: 1.25rem;
+}
+
+.hero-cta .store-badges {
+    margin: 0;
+}
+
+.hero-trust {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-trust li + li::before {
+    content: '·';
+    margin-right: 0.5rem;
+}
+
+.hero-visual {
+    display: flex;
+    justify-content: center;
+}
+
+/* Below 992px the screenshot stands upright under the text. */
+.hero-image {
+    width: 260px;
+    height: auto;
+    border-radius: 2rem;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+}
+
+@media (min-width: 992px) {
+    .hero {
+        padding: 7rem 0 3rem;
+        text-align: left;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1.1fr 0.9fr;
+    }
+
+    .hero-subtitle {
+        margin-left: 0;
+    }
+
+    .hero-trust {
+        justify-content: flex-start;
+    }
+
+    /* Tilted, and hanging 3rem into the screenshots section below. */
+    .hero-image {
+        width: 360px;
+        margin-bottom: -6rem;
+        transform: rotate(-4deg);
+    }
+}
+
+/* ==========================================
+   Section header
+   ========================================== */
+
+.section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+}
+
+.section-description {
+    color: var(--text-muted);
+    font-size: 1.0625rem;
+    margin: 0;
+}
+
+/* ==========================================
+   Screenshots
+   ========================================== */
+
+.screenshots-section {
+    padding: 5rem 0;
+    background: var(--section-surface-b);
+}
+
+/* Room for the hero screenshot that hangs into this section. */
+@media (min-width: 992px) {
+    .screenshots-section {
+        padding-top: 6rem;
+    }
+}
+
+.screenshots-container {
+    position: relative;
+}
+
+.screenshots-scroll {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    overflow-x: auto;
+    /* The vertical padding keeps the card shadows from being cut off. */
+    padding: 1rem 1.5rem 2rem;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1.5rem;
+    -webkit-overflow-scrolling: touch;
+}
+
+.screenshot-card {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+}
+
+.screenshot-trigger {
+    display: block;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 1.5rem;
+    transition: transform 0.2s ease;
+}
+
+.screenshot-trigger:hover {
+    transform: translateY(-4px);
+}
+
+.screenshot-image {
+    width: 300px;
+    height: auto;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    font-size: 1.125rem;
+    color: var(--text-dark);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-50%);
+    transition: box-shadow 0.2s ease, color 0.2s ease;
+}
+
+.carousel-arrow:hover {
+    color: var(--link-color);
+    box-shadow: var(--shadow-lg);
+}
+
+.carousel-prev {
+    left: -1.25rem;
+}
+
+.carousel-next {
+    right: -1.25rem;
+}
+
+/* On a phone the carousel is scrolled by touch. */
+@media (max-width: 767px) {
+    .screenshot-image {
+        width: 240px;
+    }
+
+    .carousel-arrow {
+        display: none;
+    }
+}
+
+/* ==========================================
+   Lightbox
+   ========================================== */
+
+.lightbox {
+    width: calc(100% - 1rem);
+    max-width: 500px;
+    max-height: calc(100% - 1rem);
+    padding: 0;
+    overflow-y: auto;
+    color: var(--text-primary);
+    background: var(--bg-page);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+}
+
+.lightbox::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+@media (min-width: 576px) {
+    .lightbox {
+        max-height: calc(100% - 3.5rem);
+    }
+}
+
+.lightbox-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.lightbox-header h4 {
+    margin: 0;
+}
+
+.lightbox-close {
+    display: flex;
+    flex-shrink: 0;
+    margin-left: auto;
+    padding: 0.5rem;
+    background: transparent;
+    border: 0;
+    border-radius: 0.375rem;
+    font-size: 1.25rem;
+    opacity: 0.5;
+}
+
+.lightbox-close:hover {
+    opacity: 0.75;
+}
+
+.lightbox-body {
+    padding: 1rem;
+}
+
+.lightbox-image {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 0.75rem;
+}
+
+/* ==========================================
+   Features
+   ========================================== */
+
+.features-section {
+    padding: var(--section-padding-y) 0;
+    background: var(--bg-page);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 56rem) {
+    .features-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.feature-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.feature-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    background: var(--tint);
+    border: 1px solid rgba(var(--primary-rgb), 0.3);
+    border-radius: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+}
+
+.feature-title {
+    margin-bottom: 0.75rem;
+}
+
+.feature-description {
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* ==========================================
+   FAQ
+   ========================================== */
+
+.faq-section {
+    padding: var(--section-padding-y) 0;
+    background: var(--bg-page);
+}
+
+.faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    overflow: hidden;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+}
+
+.faq-item:first-child {
+    border-top-left-radius: var(--radius-lg);
+    border-top-right-radius: var(--radius-lg);
+}
+
+.faq-item:last-child {
+    border-bottom-left-radius: var(--radius-lg);
+    border-bottom-right-radius: var(--radius-lg);
+}
+
+.faq-item + .faq-item {
+    border-top: 0;
+}
+
+.faq-item summary {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text-dark);
+    cursor: pointer;
+    list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Chevron, drawn in the text colour through a mask. */
+.faq-item summary::after {
+    content: '';
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-left: auto;
+    background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e") center / 1.25rem no-repeat;
+    mask: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e") center / 1.25rem no-repeat;
+    transition: transform 0.2s ease-in-out;
+}
+
+.faq-item[open] summary {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.faq-item[open] summary::after {
+    transform: rotate(-180deg);
+}
+
+.faq-body {
+    padding: 1rem 1.5rem 1.25rem;
+}
+
+.faq-answer {
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+/* ==========================================
+   Download
+   ========================================== */
+
+.download-section {
+    padding: var(--section-padding-y) 0;
+    background: var(--brand-gradient);
+    text-align: center;
+}
+
+.download-content h2 {
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.download-description {
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 640px;
+    margin: 0 auto 2rem;
+    font-size: 1.125rem;
+}
+
+/* ==========================================
+   Store badges
+   ========================================== */
+
+.store-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+@media (min-width: 992px) {
+    .hero-grid .store-badges {
+        justify-content: flex-start;
+    }
+}
+
+.store-badge-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.store-badge-link:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.04);
+}
+
+.store-badge {
+    height: 50px;
+    width: auto;
+    filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.18));
+}
+
+@media (max-width: 768px) {
+    .store-badge {
+        height: 45px;
+    }
+}
+
+/* ==========================================
+   Prose pages (privacy policy, 404)
+   ========================================== */
+
+.privacy-page {
+    padding: 4rem 0 var(--section-padding-y);
+    background: var(--bg-page);
+    min-height: 70vh;
+}
+
+.privacy-content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+.privacy-content h1 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.privacy-content h2,
+.privacy-content h3 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.privacy-content p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.privacy-content ul {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+.privacy-content li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.privacy-content .button {
+    margin-top: 0.5rem;
+}
+
+/* ==========================================
+   Footer
+   ========================================== */
+
+.site-footer {
+    background: color-mix(in srgb, var(--bg-light) 92%, var(--bg-page));
+    color: var(--text-primary);
+    padding: 3rem 0 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-brand {
+    max-width: 400px;
+}
+
+.footer-tagline {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    margin: 0;
+}
+
+.footer-social {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-light);
+    color: var(--text-light);
+    font-size: 1.25rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.social-link:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.footer-copyright {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+    text-align: center;
+}
+
+/* Without the tagline row above it, the line would sit directly under the footer's own border. */
+.footer-copyright:first-child {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.footer-copyright p {
+    color: var(--text-light);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.footer-links {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.5rem;
+}
+
+.footer-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: var(--link-color);
+}

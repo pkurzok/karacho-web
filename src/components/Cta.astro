@@ -1,0 +1,24 @@
+---
+// The call to action of the hero and of the download band: a button while the app is only
+// announced, the App Store badge once it can be pre-ordered or downloaded.
+import { app } from '../data/site';
+import StoreBadge from './StoreBadge.astro';
+
+interface Props {
+  placement: 'hero' | 'download';
+}
+
+const cta = Astro.props.placement === 'hero' ? app.heroCta : app.downloadCta;
+---
+
+{
+  app.status === 'announced' ? (
+    <a href={cta.href} class="button button-inverse">
+      {cta.label}
+    </a>
+  ) : (
+    <div class="store-badges">
+      <StoreBadge />
+    </div>
+  )
+}

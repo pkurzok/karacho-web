@@ -1,0 +1,35 @@
+---
+import { app, copyright, footerLinks, social } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <p class="footer-tagline">{app.tagline}</p>
+      </div>
+      <div class="footer-social">
+        {
+          social.map((entry) => (
+            <a href={entry.href} class="social-link" aria-label={entry.label}>
+              <Icon name={entry.icon} />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="footer-links">
+        {
+          footerLinks.map((entry) => (
+            <a href={entry.href} class="footer-link">
+              {entry.label}
+            </a>
+          ))
+        }
+      </div>
+      <p>{copyright}</p>
+    </div>
+  </div>
+</footer>

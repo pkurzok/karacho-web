@@ -1,0 +1,26 @@
+---
+import { features, sections } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<section id="features" class="features-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>{sections.features.title}</h2>
+      <p class="section-description">{sections.features.description}</p>
+    </div>
+    <div class="features-grid">
+      {
+        features.map((feature) => (
+          <div class="feature-card">
+            <div class="feature-icon">
+              <Icon name={feature.icon} />
+            </div>
+            <h4 class="feature-title">{feature.title}</h4>
+            <p class="feature-description">{feature.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,64 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import { screenshots, sections } from '../data/site';
+import Icon from './Icon.astro';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/images/screenshots/*.jpg', {
+  eager: true,
+});
+
+const shots = screenshots.map((shot) => {
+  const image = images[`../assets/images/screenshots/${shot.file}`];
+  if (!image) throw new Error(`Screenshot ${shot.file} is missing in src/assets/images/screenshots/`);
+  return { ...shot, image: image.default };
+});
+---
+
+<section id="screenshots" class="screenshots-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>{sections.screenshots.title}</h2>
+      <p class="section-description">{sections.screenshots.description}</p>
+    </div>
+    <div class="screenshots-container">
+      <button type="button" class="carousel-arrow carousel-prev" aria-label="Previous screenshot">
+        <Icon name="chevron-left" />
+      </button>
+      <div class="screenshots-scroll">
+        {
+          shots.map((shot) => (
+            <div class="screenshot-card">
+              {/* The thumbnail is a small variant; the lightbox loads the original. */}
+              <button
+                type="button"
+                class="screenshot-trigger"
+                data-full={`/images/screenshots/${shot.file}`}
+                data-alt={shot.alt}
+              >
+                <Image src={shot.image} width={600} alt={shot.alt} loading="lazy" class="screenshot-image" />
+              </button>
+            </div>
+          ))
+        }
+      </div>
+      <button type="button" class="carousel-arrow carousel-next" aria-label="Next screenshot">
+        <Icon name="chevron-right" />
+      </button>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const scroller = document.querySelector('.screenshots-scroll');
+    // One card plus the 1.5rem gap between two cards.
+    const step = () => scroller.querySelector('.screenshot-card').offsetWidth + 24;
+    document
+      .querySelector('.carousel-prev')
+      .addEventListener('click', () => scroller.scrollBy({ left: -step(), behavior: 'smooth' }));
+    document
+      .querySelector('.carousel-next')
+      .addEventListener('click', () => scroller.scrollBy({ left: step(), behavior: 'smooth' }));
+  })();
+</script>
