@@ -7,12 +7,12 @@ export const app = {
   tagline: 'Your GPS speed in big amber digits.',
   author: 'Peter Kurzok',
   email: 'karacho@peterkurzok.de',
-  // Both stay empty until the app is in the App Store. 'preorder' and 'released' need them:
-  // the badge links to appStoreUrl, and the Smart App Banner tag is written from appStoreId.
-  appStoreId: '',
-  appStoreUrl: '',
+  // 'preorder' and 'released' need both: the badge links to appStoreUrl, and the Smart App
+  // Banner tag is written from appStoreId.
+  appStoreId: '6819278673',
+  appStoreUrl: 'https://apps.apple.com/app/id6819278673',
   // The one value to change: 'preorder' after App Review, 'released' on launch day.
-  status: 'announced' as LaunchStatus,
+  status: 'released' as LaunchStatus,
   badge: {
     preorder: { file: 'app-store-preorder', alt: 'Pre-order on the App Store' },
     released: { file: 'app-store-download', alt: 'Download on the App Store' },

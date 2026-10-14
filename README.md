@@ -53,10 +53,10 @@ and `#FFB020` for the amber.
 | `'preorder'` | The "Pre-order on the App Store" badge | After App Review approved the pre-order |
 | `'released'` | The "Download on the App Store" badge | On launch day |
 
-`'preorder'` and `'released'` need `app.appStoreId` and `app.appStoreUrl`. Both are empty today.
-The App Store Connect record exists: the id is `6819278673`, the address
-`https://apps.apple.com/app/id6819278673`. Enter them together with the new status, not before:
-until the app is on sale the address answers with an error page. The build stops when a
+The app is released (since 2026-10-15); the status is `'released'`.
+
+`'preorder'` and `'released'` need `app.appStoreId` and `app.appStoreUrl`: the id is
+`6819278673`, the address `https://apps.apple.com/app/id6819278673`. The build stops when a
 badge has no address to link to, and the Smart App Banner tag is written only once the id is set.
 `npm run check` verifies that the built homepage matches the status.
 
