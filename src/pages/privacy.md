@@ -9,7 +9,7 @@ path: /privacy/
 
 Last updated: 15 October 2026
 
-Karacho is a speedometer. It shows how fast you are moving and has no account, no login and no server of mine behind it. It contains no analytics and no crash reporting. Without Pro, it shows a small banner recommending another app, described under *App recommendations* below.
+Karacho is a speedometer. It shows how fast you are moving and has no account, no login and no server of mine behind it. It contains no analytics and no crash reporting. Without Pro, it shows a small banner recommending another app, described under *App recommendations* below. In Settings, a board lets you suggest features and vote on them, described under *Feature requests* below.
 
 This policy explains what the app reads on your iPhone, and what leaves it.
 
@@ -52,13 +52,28 @@ Kickstart Exchange does not identify or track you or your device. It keeps app-l
 
 Legal basis: Art. 6(1)(f) GDPR. My legitimate interest is to keep Karacho free to use by taking part in a cross-promotion exchange that does not track anyone.
 
+## Feature requests (Kickstart Signal)
+
+Settings has a *Feature Requests* board, open to everyone, where you can read suggestions for Karacho, vote on them, comment, and make your own. The board comes from [Kickstart Signal](https://signal.kickstart.tools), a feedback service for independent Apple apps. Karacho contacts it only while you have the board open. Browsing sends no identifier.
+
+To load the board, the app sends Kickstart Signal Karacho's key and identifier and the version of the board's software. When you vote, comment or suggest a feature, it also sends:
+
+- what you write: the title and description of a suggestion, or the text of a comment;
+- a random installation ID, created on your iPhone the first time you vote, comment or suggest something, and stored there. It is not derived from you or your device, and it is what lets you take back a vote without being counted twice;
+- whether Pro is unlocked, so that I can tell which ideas matter to the people who support the app;
+- when the server asks for it, Apple's signed proof of the app install, which confirms the request comes from a genuine installation and is checked and not kept.
+
+Nothing you submit is published until I have reviewed it. Please do not put your name, email address or anything else that identifies you in a suggestion or comment. Kickstart Signal does not use any of this for tracking, advertising or marketing. As with any connection on the internet, its servers see your IP address while they answer. Details are in the [Kickstart Signal privacy notice](https://signal.kickstart.tools/privacy).
+
+Taking part is voluntary: if you never open the board, Karacho never contacts Kickstart Signal. Legal basis: Art. 6(1)(f) GDPR. My legitimate interest is to learn which improvements the people who use Karacho want most.
+
 ## No tracking
 
 - no analytics, no usage statistics
 - no crash reporting
 - no advertising identifier and no request for permission to track
 - no accounts, no email sign-up
-- no third-party service that receives personal data from the app; Kickstart Exchange, above, receives only app-level information
+- no third-party service that receives personal data from the app for tracking or advertising; Kickstart Exchange, above, receives only app-level information, and Kickstart Signal only what you choose to send from the feature board
 
 ## This website
 

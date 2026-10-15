@@ -148,7 +148,7 @@ export const faq = [
   {
     question: 'Do you collect any data about me?',
     answer:
-      'No. There is no account, no analytics, no crash reporting and no tracking. Karacho reads how fast you are moving, never where you are, and nothing about your location or your movement leaves the iPhone. Without Pro, a small banner recommends another independent app; the service behind it, Kickstart Exchange, receives only information about the app, never about you. The privacy policy has the details.',
+      'No. There is no account, no analytics, no crash reporting and no tracking. Karacho reads how fast you are moving, never where you are, and nothing about your location or your movement leaves the iPhone. Without Pro, a small banner recommends another independent app; the service behind it, Kickstart Exchange, receives only information about the app, never about you. The feature board in Settings sends only what you choose to submit there, with a random ID instead of your name, and nothing appears on it before I have reviewed it. The privacy policy has the details.',
   },
   {
     question: 'What do the tips unlock?',
