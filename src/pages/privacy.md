@@ -1,15 +1,15 @@
 ---
 layout: ../layouts/Prose.astro
 title: Privacy Policy
-description: "What Karacho reads on your iPhone and what leaves it: no account, no analytics, and no location sent anywhere."
+description: "What Karacho reads on your iPhone and what leaves it: no account, no tracking, and no location sent anywhere."
 path: /privacy/
 ---
 
 # Privacy Policy
 
-Last updated: 5 October 2026
+Last updated: 15 October 2026
 
-Karacho is a speedometer. It shows how fast you are moving and has no account, no login and no server of mine behind it. It contains no analytics and no crash reporting.
+Karacho is a speedometer. It shows how fast you are moving and has no account, no login and no server of mine behind it. It contains no analytics and no crash reporting. Without Pro, it shows a small banner recommending another app, described under *App recommendations* below.
 
 This policy explains what the app reads on your iPhone, and what leaves it.
 
@@ -42,13 +42,23 @@ Your choice of unit and dial is stored on your iPhone and stays there. Deleting 
 
 Pro and the optional tips in Settings are handled entirely by Apple through the App Store. I receive no payment details and no personal information about you, only anonymous sales totals from Apple. To know whether Pro is unlocked, Karacho asks the App Store on your device.
 
+## App recommendations (Kickstart Exchange)
+
+Without Pro, Karacho shows one banner at the bottom of the screen that recommends another independent app. The banner comes from [Kickstart Exchange](https://exchange.kickstart.tools), a free cross-promotion service for independent Apple apps. It matches apps, not people: what you see does not depend on who you are. With Pro the banner is gone and Karacho does not contact Kickstart Exchange at all.
+
+To show a recommendation, the app sends Kickstart Exchange details about the app, not about you: Karacho's identifier and version, the platform, the App Store country, and whether the banner was shown or tapped. To confirm the request comes from a genuine installation, it also sends Apple's signed proof of the app install, which Kickstart Exchange checks once and does not keep. As with any connection on the internet, Kickstart Exchange's servers see your IP address while they answer.
+
+Kickstart Exchange does not identify or track you or your device. It keeps app-level records of which recommendations were shown and tapped for about 30 days, and those records do not identify individual users or devices. Karacho sends it no location, no speed and no motion data. If you tap a recommendation, the App Store opens the recommended app's page. Details are in the [Kickstart Exchange privacy notice](https://exchange.kickstart.tools/privacy).
+
+Legal basis: Art. 6(1)(f) GDPR. My legitimate interest is to keep Karacho free to use by taking part in a cross-promotion exchange that does not track anyone.
+
 ## No tracking
 
 - no analytics, no usage statistics
 - no crash reporting
 - no advertising identifier and no request for permission to track
 - no accounts, no email sign-up
-- no third-party service that receives data from the app
+- no third-party service that receives personal data from the app; Kickstart Exchange, above, receives only app-level information
 
 ## This website
 

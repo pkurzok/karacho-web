@@ -133,7 +133,7 @@ export const faq = [
   {
     question: 'What does Pro add?',
     answer:
-      'Two things: Siri answers "How fast am I going with Karacho?" without opening the app, and your speed stays on the Lock Screen and in the Dynamic Island while the iPhone is locked. Pro is a one-time purchase, with no subscription.',
+      'Siri answers "How fast am I going with Karacho?" without opening the app, and your speed stays on the Lock Screen and in the Dynamic Island while the iPhone is locked. Pro also removes the app-recommendation banner. It is a one-time purchase, with no subscription.',
   },
   {
     question: 'How accurate is the speed?',
@@ -148,7 +148,7 @@ export const faq = [
   {
     question: 'Do you collect any data about me?',
     answer:
-      'No. There is no account, no analytics and no crash reporting. Karacho reads how fast you are moving, never where you are, and nothing about your location or your movement leaves the iPhone. The privacy policy has the details.',
+      'No. There is no account, no analytics, no crash reporting and no tracking. Karacho reads how fast you are moving, never where you are, and nothing about your location or your movement leaves the iPhone. Without Pro, a small banner recommends another independent app; the service behind it, Kickstart Exchange, receives only information about the app, never about you. The privacy policy has the details.',
   },
   {
     question: 'What do the tips unlock?',
